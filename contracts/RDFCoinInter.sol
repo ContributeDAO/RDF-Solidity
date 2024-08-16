@@ -9,7 +9,7 @@ contract RDFCoinInter is ERC20{
     uint8 private _decimals = 2;
 
     // 构造函数，调用了 openzeppelin 的 ERC-20 合约的构造函数，传入代币名称和符号
-    constructor() ERC20("DataPunk Coin", "DPC") {
+    constructor() ERC20("RebellionDataFunder Coin", "RDFC") {
         // 铸造 100 个 DPC 给合约部署者
         _mint(msg.sender, 100 * 10**uint256(_decimals));
     }

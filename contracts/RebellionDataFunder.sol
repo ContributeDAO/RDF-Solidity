@@ -5,7 +5,7 @@ import "./RDFCoinInter.sol";
 
 contract RebellionDataFunder {
     // IERC20接口
-    DataPunkCoinInter public dataPunkCoinInter;
+    RDFCoinInter public rdfCoinInter;
 
     // 任务结构体
     struct Task {
@@ -29,7 +29,7 @@ contract RebellionDataFunder {
     Dataset[] private datasets;
 
     constructor() {
-        dataPunkCoinInter = new DataPunkCoinInter();
+        rdfCoinInter = new RDFCoinInter();
     }
 
     function getTask(uint256 taskId) public view returns (uint256, string memory, address, uint256, Dataset[] memory) {
@@ -108,7 +108,7 @@ contract RebellionDataFunder {
 
     function transferToken(address recipient, uint256 amount) public {
         // 获取 ERC-20 合约实例
-        DataPunkCoinInter token = DataPunkCoinInter(dataPunkCoinInter);
+        RDFCoinInter token = RDFCoinInter(rdfCoinInter);
 
         // 调用 transfer 函数转移代币
         bool success = token.transfer(recipient, amount);
@@ -117,7 +117,7 @@ contract RebellionDataFunder {
     }
 
     // 新增函数，获取 DataPunkCoinInter 合约地址
-    function getDataPunkCoinInterAddress() public view returns (address) {
-        return address(dataPunkCoinInter);
+    function getRDFCoinInterAddress() public view returns (address) {
+        return address(rdfCoinInter);
     }
 }

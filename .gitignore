@@ -1,11 +1,11 @@
 # 忽略编译生成的文件
-*.abi
 *.bin
 *.json
 *.sol.js
 
 # 忽略依赖包目录
 node_modules/
+.deps/
 
 # 忽略环境变量文件
 .env
