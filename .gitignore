@@ -1,7 +1,7 @@
 # 忽略编译生成的文件
 *.bin
-*.json
 *.sol.js
+.prettierrc.json
 
 # 忽略依赖包目录
 node_modules/
@@ -16,7 +16,6 @@ node_modules/
 build/
 
 # Hardhat 合约编译输出
-artifacts/
 cache/
 
 # 忽略 Remix IDE 的配置文件
