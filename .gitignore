@@ -5,7 +5,7 @@
 
 # 忽略依赖包目录
 node_modules/
-.deps/
+npm/
 
 # 忽略环境变量文件
 .env
