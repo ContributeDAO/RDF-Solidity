@@ -28,6 +28,13 @@ contract RebellionDataFunder {
     Task[] private tasks;
     Dataset[] private datasets;
 
+    // 定义事件
+    event TaskPublished(address indexed publisher, string taskName, uint256 rewardAmount, uint256 taskId);
+    event DatasetUploaded(address indexed uploader, uint256 taskId, uint256 datasetId);
+    event DatasetVerified(address indexed validator, uint256 taskId, uint256 datasetId);
+    event ChallengeRaised(address indexed challenger, uint256 taskId, uint256 datasetId);
+    event ChallengeHandled(address indexed admin, uint256 rewardAmount, uint256 taskId, uint256 datasetId, bool challengeStatus);
+
     constructor() {
         rdfCoinInter = new RDFCoinInter();
     }
@@ -38,7 +45,7 @@ contract RebellionDataFunder {
     }
 
     // 商户 设定任务和奖励
-    function deployTask(string memory name, uint256 reward) public returns (uint256) {
+    function publishTask(string memory name, uint256 reward) public returns (uint256) {
         uint256 taskId;
         if (tasks.length == 0) {
             taskId = 0;
@@ -54,11 +61,21 @@ contract RebellionDataFunder {
         newTask.publisher = msg.sender;
         newTask.reward = reward;
 
+        // 触发事件
+        emit TaskPublished(msg.sender, name, reward, taskId);
+
         return taskId;
     }
 
+    // 商户/任何人 发起质疑
+    function raiseChallenge( uint256 taskId, uint256 datasetId) public returns (bool) {
+        emit ChallengeRaised(msg.sender, taskId, datasetId);
+
+        return true;
+    }
+
     // 管理员 处理质疑
-    function raiseChallenge(uint256 amount, uint256 taskId, uint256 datasetId, bool challengeStatus) public returns (bool) {
+    function handleChallenge(uint256 amount, uint256 taskId, uint256 datasetId, bool challengeStatus) public returns (bool) {
         Task storage task = tasks[taskId];
         Dataset storage dataset = task.datasets[datasetId];
         dataset.isValidated = challengeStatus;
@@ -73,6 +90,8 @@ contract RebellionDataFunder {
             // 扣除验证者质押ETH, 质疑者获得奖励
             transferToken(publisher, amount);
         }
+
+        emit ChallengeHandled(msg.sender, amount, taskId, datasetId, challengeStatus);
 
         return true;
     }
@@ -92,6 +111,7 @@ contract RebellionDataFunder {
         newDataset.datasetId = datasetId;
         newDataset.uploader = msg.sender;
         newDataset.isValidated = false;
+        emit DatasetUploaded(msg.sender, taskId, datasetId);
 
         return datasetId;
     }
@@ -102,6 +122,8 @@ contract RebellionDataFunder {
         Dataset storage dataset = task.datasets[datasetId];
         dataset.isValidated = true;
         dataset.validator = msg.sender;
+
+        emit DatasetVerified(msg.sender, taskId, datasetId);
 
         return true;
     }

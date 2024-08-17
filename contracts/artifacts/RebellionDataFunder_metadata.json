@@ -11,28 +11,147 @@
 				"type": "constructor"
 			},
 			{
+				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "admin",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "rewardAmount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "taskId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "datasetId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "challengeStatus",
+						"type": "bool"
+					}
+				],
+				"name": "ChallengeHandled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "challenger",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "taskId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "datasetId",
+						"type": "uint256"
+					}
+				],
+				"name": "ChallengeRaised",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "uploader",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "taskId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "datasetId",
+						"type": "uint256"
+					}
+				],
+				"name": "DatasetUploaded",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "validator",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "taskId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "datasetId",
+						"type": "uint256"
+					}
+				],
+				"name": "DatasetVerified",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "publisher",
+						"type": "address"
+					},
+					{
+						"indexed": false,
 						"internalType": "string",
-						"name": "name",
+						"name": "taskName",
 						"type": "string"
 					},
 					{
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "reward",
+						"name": "rewardAmount",
 						"type": "uint256"
-					}
-				],
-				"name": "deployTask",
-				"outputs": [
+					},
 					{
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "",
+						"name": "taskId",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
-				"type": "function"
+				"name": "TaskPublished",
+				"type": "event"
 			},
 			{
 				"inputs": [],
@@ -129,6 +248,54 @@
 						"internalType": "bool",
 						"name": "challengeStatus",
 						"type": "bool"
+					}
+				],
+				"name": "handleChallenge",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "reward",
+						"type": "uint256"
+					}
+				],
+				"name": "publishTask",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "taskId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "datasetId",
+						"type": "uint256"
 					}
 				],
 				"name": "raiseChallenge",
@@ -293,11 +460,11 @@
 			]
 		},
 		"contracts/RebellionDataFunder.sol": {
-			"keccak256": "0x1824a4776e60e2ce680b99917448884b20f2d8ec5dde69ac9deca641a0c489a5",
+			"keccak256": "0x88756085545255b43d0b8afd7f4a52fe14c542ff5ef0430ffc44b9b4a973264d",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://4e5f790d59678b252855a55e0dc4c553c63151d9170f33ccc205aff64432d95e",
-				"dweb:/ipfs/Qme8r7rrfUwM5eYhSuPeg56w6D6bV36VHwYSbKpgxHiJ19"
+				"bzz-raw://1078e2960b36f86432000eab8c39ed5abc5ec5b0982698da8dc12c7133021539",
+				"dweb:/ipfs/QmTyggHsNKPRhsSZUrJ1mcK536MG1zD1HnKJC3y42zYvMV"
 			]
 		}
 	},
